@@ -25,3 +25,16 @@ weatherForm.addEventListener("submit", async event => {
         displayError("Please enter a city");
     }
 });
+
+async function getWeatherData(city){
+
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+
+    const response = await fetch(apiUrl);
+
+    if(!response.ok){
+        throw new Error("Could not fetch weather data");
+    }
+
+    return await response.json();
+}
